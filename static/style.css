@@ -1,0 +1,50 @@
+body {
+	font-family: 'Montserrat Alternates', sans-serif;
+	background-color: #343a40;
+}
+
+nav {
+	/* background-color: transparent; */
+	background: rgba(0,0,0,1);
+}
+/* .navbar.navbar-expand-lg.navbar-dark {
+	background: linear-gradient(90deg, #01235c 0%, #01235e 30%, #002a65 50%, #013d7d 75%, #0167b2 100%);
+} */
+
+.navbar-brand {
+	font-size: 25pt;
+}
+/* .bg-dark.text-light.p-5 {
+	background-image: url(../img/sentiment_cleanup.png);
+	background-position: top right left;
+	background-repeat: no-repeat;
+	/* flex: auto; */
+	/* text-align: bottom left; */
+/* } */
+.bg.text-light.p-5.p-lg-0.pt-lg-5.text-center.text-sm-start {
+	/* background-color: black; */
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 12px;
+	/* background-image: url('../img/background.jpg'); */
+}
+.bg.p-5 {
+	background-color: black;
+}
+.analysis.bg.text-dark.p-5.pt-lg-5.text-left.text-sm-start {
+	background-color: white;
+	
+}
+img {
+	padding-right: 0;
+}
+.container {
+	padding-right:0;
+	padding-left:0;
+}
+.w-25 {
+	width: 15%!important;
+}
+.w-50 {
+	width: 5%;
+}

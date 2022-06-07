@@ -1,0 +1,37 @@
+<p style='background:green;'> 
+    <font color='black' style='padding-bottom:1%; border-bottom:4px solid green'>1</font>.
+    <font color='black' style='padding-bottom:1%; border-bottom:4px solid red'> But the script is awful.</font>. 
+</p> 
+
+<script>
+    function generateCommentHtml(comment_json) {
+        let comment = JSON.parse(comment_json);
+        let color = comment.color
+        let sentences = comment.sentences
+        let sentenceColors = comment.sentenceColors
+
+        result_html = `<span style='background-color: ${color}'>`
+
+        for (let i = 0; i < sentences.length; ++i) {
+            result_html += 
+                `<span style='box-sizing: border-box; border-bottom: 4px solid ${sentenceColors[i]}'>
+                    ${sentences[i]} + ' '
+                </span>`
+        }
+
+        return result_html + "</span>"
+    }
+
+    function addComment(id, html) {
+        document.getElementById(id).innerHTML = html; 
+    }
+
+    function addMostLiked(html) {
+        addComment("most-liked", html)
+    }
+
+    function addMostCommented(html) {
+        addComment("most-commented", html)
+    }
+    
+</script>

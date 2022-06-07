@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,200;0,500;1,300&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial_scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Sentiment App</a>
+            </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#analysis">Analysis <span class="sr-only">(current)</span></a>
+            <!-- ! подменю сделать -->
+            <!-- ? результаты анализа -->
+            <!-- ? топики -->
+            <!-- ? синтаксические деревья -->
+            <a class="nav-item nav-link" href="#home">Home</a>
+            </div>
+        </div>
+        </nav>
+        <title>Sentiment analysis</title>
+    </head>
+    <body>
+        
+        <!-- Showcase -->
+        <section
+      class="bg text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1>YouTube analysis </span></h1>
+            <p class="lead my-2">
+              Almost everything you need <br>to analyse social opinions
+            </p>
+          </div>
+          <img
+            class="img-fluid w-50 d-none d-sm-block"
+            src="{{ url_for('static', filename='showcase1.svg')}}"
+            alt="photo tuta"
+          />
+        </div>
+      </div>
+    </section>
+
+
+    <section class="analysis bg text-dark p-5 pt-lg-5 text-left text-sm-start">
+        <div class="container">
+            <h2>{{youtube_title}}</h2>
+            <!-- <iframe class="embed-responsive-item"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            src="{{context_str}}">
+            </iframe> -->
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/MxCRgtdAuBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <img class="img-fluid w-50 rounded mx-auto float-right d-flex d-sm-inline-block" src="{{path_word_clouds}}" alt="Word cloud">
+            <div class="row align-items-start">
+              <div class="col-sm"><img
+                class="img-fluid w-25 rounded mx-auto float-right d-flex d-sm-inline-block"
+                src="{{ url_for('static', filename='positive-vote.png')}}"
+                alt="Positive Icon"
+              />
+              </div>
+              <div class="col-sm"><img
+                class="img-fluid w-25 rounded mx-auto float-right d-flex d-sm-inline-block"
+                src="{{ url_for('static', filename='negative-vote.png')}}"
+                alt="Negative Icon"
+              />
+              </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-sm">
+                    {{positive_percentage}}
+                </div>
+                <div class="col-sm">
+                    {{negative_percentage}}
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-sm">
+                    {{positive_count}}
+                </div>
+                <div class="col-sm">
+                    {{negative_count}}
+                </div>
+            </div>
+          </div>
+
+          <div class="row align-items start">
+              <div class="col-sm">
+                  <h3>Most liked</h3>
+              </div>
+              <div class="col-sm"><img
+                class="img-fluid w-25 rounded mx-auto float-right d-flex d-sm-inline-block"
+                src="{{ url_for('static', filename='heart.png')}}"
+                alt="Heart"
+              /></div>
+              <div class="col-sm"><img
+                class="img-fluid w-25 rounded mx-auto float-right d-flex d-sm-inline-block"
+                src="{{ url_for('static', filename='comment.png')}}"
+                alt="Comment"
+              /></div>
+          </div>
+          <div class="row align-items center">
+              <div class="col-sm">
+                  {{ml_comment_formated}}
+              </div>
+              <div class="col-sm">
+                  {{ml_value_of_likes}}
+              </div>
+              <div class="col-sm">
+                  {{ml_value_of_comments}}
+              </div>
+          </div>
+          <div class="row align-items center">
+              <div class="col-sm">
+                  <h3>Most commented</h3>
+              </div>
+              <div class="col-sm"><img
+                class="img-fluid w-25 rounded mx-auto float-right d-flex d-sm-inline-block"
+                src="{{ url_for('static', filename='heart.png')}}"
+                alt="Heart"
+              /></div>
+              <div class="col-sm"><img
+                class="img-fluid w-25 rounded mx-auto float-right d-flex d-sm-inline-block"
+                src="{{ url_for('static', filename='comment.png')}}"
+                alt="Heart"
+              /></div>
+          </div>
+          <div class="row align-items end">
+              <div class="col-sm">
+                  {{mc_comment_formated}}
+              </div>
+              <div class="col-sm">
+                  {{mc_value_of_likes}}
+              </div>
+              <div class="col-sm">
+                  {{mc_value_of_comments}}
+              </div>
+          </div>
+
+          
+    </section>
+
+  <!-- Footer -->
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+      <div class="container">
+        <p class="lead">Copyright &copy; 2022, Ryabykin Aleksey</p>
+
+        <a href="#" class="position-absolute bottom-0 end-0 p-5">
+          <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+      </div>
+    </footer>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="js/darkmode.js"></script>
+    </body>
+
+</html>
